@@ -7,13 +7,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.io.Serial;
 
 public class Bilanz extends JFrame {
 
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	private final JLabel umsatzlabel;
 

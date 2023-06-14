@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Objects;
 
 public class GUI extends JFrame {
@@ -15,7 +16,8 @@ public class GUI extends JFrame {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	private void btnaction(JButton btn, int row, int col) {
         if (rbtnNr == 3) {
