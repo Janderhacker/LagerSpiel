@@ -2,42 +2,44 @@ package GUI;
 
 import main.Game;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 public class GUI extends JFrame {
 
 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private void btnaction(JButton btn, int row, int col){
+	private void btnaction(JButton btn, int row, int col) {
         if (rbtnNr == 3) {
             if (!mainGame.destroy(row, col)) {
                 JOptionPane.showMessageDialog(frame, "Hier gibt es kein Item");
-            }
-            else btn.setIcon(null);
+            } else btn.setIcon(null);
         } else {
             heinlagerung(rbtnNr);
             if (!textmanager[rbtnNr].getText().equals("")) {
                 if (!mainGame.ausfuehren(rbtnNr, row, col)) {
-                    if(einlagerung) JOptionPane.showMessageDialog(frame, "Das item passt hier nicht");
+                    if (einlagerung) JOptionPane.showMessageDialog(frame, "Das item passt hier nicht");
                     else JOptionPane.showMessageDialog(frame, "Das ist das Falsche item");
                 } else {
                     textmanager[rbtnNr].setText("");
                     if (einlagerung) {
-                    	 try {
-                    		 System.out.println("src/images/"+mainGame.img(row, col)+".png");
-							Image img = ImageIO.read(Objects.requireNonNull(getClass().getResource("../images/" + mainGame.img(row, col) + ".png")));
-							btn.setIcon(new ImageIcon(img));
-                             labelmanager[rbtnNr].setIcon(null);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-                        
+                        try {
+                        	System.out.println();
+                            Image img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mainGame.img(row, col) + ".png")));
+                            btn.setIcon(new ImageIcon(img));
+                            labelmanager[rbtnNr].setIcon(null);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     } else {
                         btn.setIcon(null);
                         btn.setText("");
@@ -51,13 +53,13 @@ public class GUI extends JFrame {
         }
         bilanz.setText("Konto: " + mainGame.getMoney());
     }
-    private JLabel img1lbl;
-    private JLabel img2lbl;
-    private JLabel img3lbl;
+
+    private final JLabel img1lbl;
+    private final JLabel img2lbl;
+    private final JLabel img3lbl;
 
 
-
-    private JLabel bilanz;
+    private final JLabel bilanz;
 
     private final Game mainGame = new Game();
     Bilanz bwindow = new Bilanz();
@@ -69,7 +71,7 @@ public class GUI extends JFrame {
 
     private final JTextPane[] textmanager = new JTextPane[3];
 
-    private  JLabel[] labelmanager = new JLabel[3];
+    private final JLabel[] labelmanager = new JLabel[3];
 
     private int rbtnNr = 0;
 
@@ -79,6 +81,7 @@ public class GUI extends JFrame {
      * Create the frame.
      */
     public GUI() {
+        setResizable(false);
         setTitle("Lagerspiel INF22B Jan Denis");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1440, 900);
@@ -223,7 +226,7 @@ public class GUI extends JFrame {
         img2lbl = new JLabel("");
         img2lbl.setBounds(913, 386, 100, 100);
         frame.add(img2lbl);
-        
+
         img3lbl = new JLabel("");
         img3lbl.setBounds(1129, 386, 100, 100);
         frame.add(img3lbl);
@@ -254,14 +257,14 @@ public class GUI extends JFrame {
 
         });
         neuAuftrag.addActionListener(e -> {
-            if (auftrag0.getText().equals("") || auftrag1.getText().equals("")||auftrag2.getText().equals("")) {
+            if (auftrag0.getText().equals("") || auftrag1.getText().equals("") || auftrag2.getText().equals("")) {
                 String auftrag = mainGame.getAuftrag();
 
                 if (!auftrag.equals("End")) {
                     if (auftrag0.getText().equals("")) {
-                        Image img = null;
+                        Image img;
                         try {
-                            img = ImageIO.read(Objects.requireNonNull(getClass().getResource("../images/" + mainGame.img(0) + ".png")));
+                            img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mainGame.img(0) + ".png")));
                             img1lbl.setIcon(new ImageIcon(img));
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -271,20 +274,19 @@ public class GUI extends JFrame {
 
 
                     } else if (auftrag1.getText().equals("")) {
-                        Image img = null;
+                        Image img;
                         try {
-                            img = ImageIO.read(Objects.requireNonNull(getClass().getResource("../images/" + mainGame.img(1) + ".png")));
+                            img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mainGame.img(1) + ".png")));
                             img2lbl.setIcon(new ImageIcon(img));
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
                         auftrag1.setText(auftrag);
-                        ;
 
                     } else if (auftrag2.getText().equals("")) {
-                        Image img = null;
+                        Image img;
                         try {
-                            img = ImageIO.read(Objects.requireNonNull(getClass().getResource("../images/" + mainGame.img(2) + ".png")));
+                            img = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mainGame.img(2) + ".png")));
                             img3lbl.setIcon(new ImageIcon(img));
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -303,38 +305,38 @@ public class GUI extends JFrame {
         });
 
 
-        button00.addActionListener(e -> btnaction(button00, 0,0));
+        button00.addActionListener(e -> btnaction(button00, 0, 0));
 
-        button01.addActionListener(e -> btnaction(button01, 0,1));
+        button01.addActionListener(e -> btnaction(button01, 0, 1));
 
-        button02.addActionListener(e -> btnaction(button02, 0,2));
+        button02.addActionListener(e -> btnaction(button02, 0, 2));
 
-        button03.addActionListener(e -> btnaction(button03, 0,3));
+        button03.addActionListener(e -> btnaction(button03, 0, 3));
 
 
-        button10.addActionListener(e -> btnaction(button10, 1,0));
+        button10.addActionListener(e -> btnaction(button10, 1, 0));
 
-        button11.addActionListener(e -> btnaction(button11, 1,1));
+        button11.addActionListener(e -> btnaction(button11, 1, 1));
 
-        button12.addActionListener(e -> btnaction(button12, 1,2));
+        button12.addActionListener(e -> btnaction(button12, 1, 2));
 
-        button13.addActionListener(e -> btnaction(button13, 1,3));
+        button13.addActionListener(e -> btnaction(button13, 1, 3));
 
-        button20.addActionListener(e -> btnaction(button20, 2,0));
+        button20.addActionListener(e -> btnaction(button20, 2, 0));
 
-        button21.addActionListener(e -> btnaction(button21, 2,1));
+        button21.addActionListener(e -> btnaction(button21, 2, 1));
 
-        button22.addActionListener(e -> btnaction(button22, 2,2));
+        button22.addActionListener(e -> btnaction(button22, 2, 2));
 
-        button23.addActionListener(e -> btnaction(button23, 2,3));
+        button23.addActionListener(e -> btnaction(button23, 2, 3));
 
-        button30.addActionListener(e -> btnaction(button30, 3,0));
+        button30.addActionListener(e -> btnaction(button30, 3, 0));
 
-        button31.addActionListener(e -> btnaction(button31, 3,1));
+        button31.addActionListener(e -> btnaction(button31, 3, 1));
 
-        button32.addActionListener(e -> btnaction(button32, 3,2));
+        button32.addActionListener(e -> btnaction(button32, 3, 2));
 
-        button33.addActionListener(e -> btnaction(button33, 3,3));
+        button33.addActionListener(e -> btnaction(button33, 3, 3));
 
         rbutton0.addActionListener(e -> rbtnNr = 0);
 

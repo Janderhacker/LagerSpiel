@@ -7,10 +7,10 @@ import Items.Stein;
 
 public class Auftrag {
     private Artikel item;
-    private int Wert;
-    private String typ; //Einlagerung oder Auslagerung
+    private final int Wert;
+    private final String typ; //Einlagerung oder Auslagerung
 
-    public Auftrag(String[] auftrag){
+    public Auftrag(String[] auftrag) {
         this.typ = auftrag[1];
         switch (auftrag[2]) {
             case "Papier" -> this.item = new Papier(auftrag[3], auftrag[4]);
@@ -28,7 +28,6 @@ public class Auftrag {
     public Artikel getItem() {
         return item;
     }
-
 
 
     public String getTyp() {

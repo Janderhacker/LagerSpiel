@@ -5,21 +5,24 @@ import main.Game;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-
-
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 public class Bilanz extends JFrame {
 
-    private JLabel umsatzlabel;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private JLabel kostenlabel;
+	private final JLabel umsatzlabel;
 
-    private JScrollPane scrollPane;
+    private final JLabel kostenlabel;
+
+    private final JScrollPane scrollPane;
 
     public Bilanz() {
+    	setResizable(false);
 
         this.addWindowFocusListener(new WindowFocusListener() {
             @Override
@@ -47,7 +50,6 @@ public class Bilanz extends JFrame {
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
 
-
         umsatzlabel = new JLabel("Umsatz: 0");
         umsatzlabel.setBounds(267, 27, 102, 14);
         contentPane.add(umsatzlabel);
@@ -58,13 +60,13 @@ public class Bilanz extends JFrame {
     }
 
 
-        public void update(Game game) {
-            String[] transactions = game.getTransactions().toArray(new String[0]);
-            JList<String> transactionlist = new JList<>(transactions);
-            scrollPane.setViewportView(transactionlist);
-            umsatzlabel.setText("Umsatz: " + game.getUmsatz());
-            kostenlabel.setText("Kosten: " + game.getKosten());
+    public void update(Game game) {
+        String[] transactions = game.getTransactions().toArray(new String[0]);
+        JList<String> transactionlist = new JList<>(transactions);
+        scrollPane.setViewportView(transactionlist);
+        umsatzlabel.setText("Umsatz: " + game.getUmsatz());
+        kostenlabel.setText("Kosten: " + game.getKosten());
 
-        }
+    }
 
 }

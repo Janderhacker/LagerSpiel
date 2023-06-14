@@ -1,8 +1,8 @@
 package Items;
 
 public class Papier extends Artikel {
-    private String Farbe;
-    private String Groesse;
+    private final String Farbe;
+    private final String Groesse;
 
     public Papier(String farbe, String groesse) {
         this.Farbe = farbe;
@@ -12,15 +12,14 @@ public class Papier extends Artikel {
     }
 
     @Override
-    public boolean equals(Object o){
-        if(o == this){
+    public boolean equals(Object o) {
+        if (o == this) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) return false;
         Papier that = (Papier) o;
         return Farbe.equals(that.Farbe) && Groesse.equals(that.Groesse);
     }
-
 
 
 }

@@ -11,10 +11,10 @@ public class Artikel {
 
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         return o == this;
     }
-    
+
     public String getImg() {
         return img;
     }

@@ -1,10 +1,10 @@
 package Items;
 
-public class Stein extends Artikel{
-    private String Art;
-    private String Gewicht;
+public class Stein extends Artikel {
+    private final String Art;
+    private final String Gewicht;
 
-    public Stein(String art, String gewicht){
+    public Stein(String art, String gewicht) {
         this.Art = art;
         this.Gewicht = gewicht;
         this.Artikeltyp = "Stein";
@@ -12,16 +12,14 @@ public class Stein extends Artikel{
     }
 
 
-
     public String getGewicht() {
         return Gewicht;
     }
 
 
-
     @Override
-    public boolean equals(Object o){
-        if(o == this){
+    public boolean equals(Object o) {
+        if (o == this) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) return false;
