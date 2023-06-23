@@ -10,10 +10,6 @@ import java.awt.event.WindowFocusListener;
 import java.io.Serial;
 
 public class Bilanz extends JFrame {
-
-    /**
-	 * 
-	 */
 	@Serial
     private static final long serialVersionUID = 1L;
 
