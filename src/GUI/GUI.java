@@ -11,6 +11,11 @@ import java.io.Serial;
 import java.util.Objects;
 
 public class GUI extends JFrame {
+
+
+    /**
+	 * 
+	 */
 	@Serial
     private static final long serialVersionUID = 1L;
 
@@ -257,6 +262,7 @@ public class GUI extends JFrame {
             if (auftrag0.getText().equals("") || auftrag1.getText().equals("") || auftrag2.getText().equals("")) {
                 String auftrag = mainGame.getAuftrag();
 
+                if (!auftrag.equals("End")) {
                     if (auftrag0.getText().equals("")) {
                         Image img;
                         try {
@@ -290,6 +296,12 @@ public class GUI extends JFrame {
                         auftrag2.setText(auftrag);
 
                     }
+
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Du hast Gewonnen dein Score ist: " + mainGame.getMoney());
+                    System.exit(0);
+
+                }
             }
 
         });
