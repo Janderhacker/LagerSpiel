@@ -15,6 +15,8 @@ public class Game {
 
     private final Orders order = new Orders();
 
+    private final RandomOrder roder = new RandomOrder();
+
     public int getMoney() {
         return money;
     }
@@ -32,11 +34,12 @@ public class Game {
 
     //Gibt den nächsten Auftrag zurück
     public String getAuftrag() {
+        //Change to random Orders after finishing Orders.java
         String[] stringArray;
         try {
             stringArray = order.getNextOrder();
         } catch (ArrayIndexOutOfBoundsException e) {
-            return "End";
+            stringArray = roder.getNextOrder();
         }
 
         StringBuilder sb = new StringBuilder();
